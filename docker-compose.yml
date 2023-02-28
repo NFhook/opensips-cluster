@@ -1,0 +1,71 @@
+version: '3'
+services:
+  opensips-1:
+    container_name: opensips-1
+    image: opensips:v3.3
+    privileged: true
+    restart: always
+    volumes:
+      - $PWD/opensips-1/etc/opensips.cfg:/etc/opensips/opensips.cfg
+      - $PWD/opensips-1/etc/opensips-cli.cfg:/etc/opensips-cli.cfg
+      - $PWD/opensips-1/etc/pi_framework.xml:/usr/share/opensips/pi_http/pi_framework.xml
+        #ports:
+        #- 1060:5060/udp
+        #- 1060:5060/tcp
+        #networks:
+        #sipnetwork:
+        #ipv4_address: 192.168.1.10
+    network_mode: host
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+  opensips-2:
+    container_name: opensips-2
+    image: opensips:v3.3
+    privileged: true
+    restart: always
+    volumes:
+      - $PWD/opensips-2/etc/opensips.cfg:/etc/opensips/opensips.cfg
+      - $PWD/opensips-2/etc/opensips-cli.cfg:/etc/opensips-cli.cfg
+      - $PWD/opensips-2/etc/pi_framework.xml:/usr/share/opensips/pi_http/pi_framework.xml
+        #ports:
+        #- 2060:5060/udp
+        #- 2060:5060/tcp
+        #networks:
+        #sipnetwork:
+        #ipv4_address: 192.168.1.20
+    network_mode: host
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+  opensips-3:
+    container_name: opensips-3
+    image: opensips:v3.3
+    privileged: true
+    restart: always
+    volumes:
+      - $PWD/opensips-3/etc/opensips.cfg:/etc/opensips/opensips.cfg
+      - $PWD/opensips-3/etc/opensips-cli.cfg:/etc/opensips-cli.cfg
+      - $PWD/opensips-3/etc/pi_framework.xml:/usr/share/opensips/pi_http/pi_framework.xml
+        #ports:
+        #- 3060:5060/udp
+        #- 3060:5060/tcp
+        #networks:
+        #sipnetwork:
+        #ipv4_address: 192.168.1.30
+    network_mode: host
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+
+#networks:
+#  sipnetwork:
+#    external:
+#      name: sipnet
+#networks:
+#  docker-network:
+#    external:
+#      name: docker-network-app
